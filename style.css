@@ -1,12 +1,13 @@
+
 /* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  /* Background Image */
-  .hero {
+}
+
+/* Background Image */
+.hero {
     position: relative;
     height: 100vh;
     background-image: url('images/stylish-guy-gym-is-training-treadmill-healthy-lifestyle.jpg'); /* Replace with your image path */
@@ -15,9 +16,9 @@
     display: flex;
     align-items: center;
     color: #fff;
-  }
-  
-  .overlay {
+}
+
+.overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -25,9 +26,9 @@
     width: 100%;
     background: rgba(0, 0, 0, 0.6); /* Dark overlay for text readability */
     z-index: 0;
-  }
-  
-  .content {
+}
+
+.content {
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -35,26 +36,26 @@
     width: 100%;
     padding: 2rem;
     z-index: 1;
-  }
-  
-  /* Left Content Section */
-  .left-content {
+}
+
+/* Left Content Section */
+.left-content {
     max-width: 50%;
     padding: 2rem;
-  }
-  
-  .left-content h1 {
+}
+
+.left-content h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
-  }
-  
-  .left-content p {
+}
+
+.left-content p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
-  }
-  
-  /* Navbar */
-  .navbar {
+}
+
+/* Navbar */
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -64,80 +65,79 @@
     position: fixed;
     width: 100%;
     z-index: 2;
-  }
-  
-  .logo {
+}
+
+.logo {
     font-size: 1.5rem;
     font-weight: bold;
-  }
-  
-  .nav-links {
+}
+
+.nav-links {
     list-style: none;
     display: flex;
     gap: 1.5rem;
-  }
-  
-  .nav-links a, .btn-login {
+}
+
+.nav-links a, .btn-login {
     color: #fff;
     text-decoration: none;
     transition: color 0.3s;
-  }
-  
-  .nav-links a:hover, .btn-login:hover {
+}
+
+.nav-links a:hover, .btn-login:hover {
     color: #ff6b6b; /* Accent color on hover */
-  }
-  
-  .btn-login {
+}
+
+.btn-login {
     background-color: #ff6b6b;
     padding: 0.5rem 1rem;
     border-radius: 5px;
     font-weight: bold;
-  }
-  
-  /* Right-aligned Login Form */
-  .login-form-container {
+}
+
+/* Right-aligned Login Form */
+.login-form-container {
     max-width: 300px;
     padding: 2rem;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     backdrop-filter: blur(5px);
-  }
-  
-  .login-form-container h2 {
+}
+
+.login-form-container h2 {
     font-size: 2rem;
     margin-bottom: 1rem;
-  }
-  
-  .login-form {
+}
+
+.login-form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-  }
-  
-  .login-form input {
+}
+
+.login-form input {
     padding: 0.8rem;
     border: none;
-    color: black;
+    color: black; /* Changed text color to black */
     border-radius: 5px;
-  }
-  
-  .login-form button {
+}
+
+.login-form button {
     padding: 0.8rem;
     border: none;
     background-color: #ff6b6b;
-    color: #fff;
+    color: #fff; /* Keep button text white or change to black as desired */
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s;
-  }
-  
-  .login-form button:hover {
-    background-color: #ff4a4a;
-  }
-  
+}
 
- /* Dashboard Background */
+.login-form button:hover {
+    background-color: #ff4a4a;
+}
+
+/* Dashboard Background */
 .dashboard-content {
     position: relative;
     padding: 2rem;
@@ -146,9 +146,9 @@
     background-position: center;
     color: #fff;
     min-height: 100vh; /* Ensures it fills the screen initially but can grow */
-  }
-  
-  .dashboard-overlay {
+}
+
+.dashboard-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -156,10 +156,10 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.6); /* Dark overlay */
     z-index: 0;
-  }
-  
-  /* Dashboard Main Content */
- /* Dashboard main content wrapper */
+}
+
+/* Dashboard Main Content */
+/* Dashboard main content wrapper */
 .dashboard-main {
     position: relative;
     z-index: 1;
@@ -167,73 +167,72 @@
     margin: 0 auto;
     padding-top: 80px; /* Add top padding to prevent content from going behind navbar */
     padding-bottom: 2rem; /* Bottom padding for extra space */
-  }
-  
-  
-  /* Greeting styling */
-  .greeting {
+}
+
+/* Greeting styling */
+.greeting {
     text-align: center;
     margin-bottom: 2rem;
-  }
-  
-  .greeting h2 {
+}
+
+.greeting h2 {
     font-size: 2.5rem;
     font-weight: bold;
-  }
-  
-  /* Responsive styling for BMI Calculator and Progress Tracker */
-  .calculator-container {
+}
+
+/* Responsive styling for BMI Calculator and Progress Tracker */
+.calculator-container {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-  }
-  
-  .calculator-box {
+}
+
+.calculator-box {
     background: rgba(255, 255, 255, 0.1);
     padding: 1.5rem;
     border-radius: 8px;
     backdrop-filter: blur(5px);
-  }
-  
-  /* Section titles */
-  .calculator-box h3 {
+}
+
+/* Section titles */
+.calculator-box h3 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
     color: #ffdfba;
-  }
-  
-  /* Form input styles */
-  form input, form button {
+}
+
+/* Form input styles */
+form input, form button {
+    color: black; /* Change text color to black */
     width: 100%;
     padding: 0.8rem;
     margin: 0.5rem 0;
     border-radius: 5px;
     border: none;
-  }
-  
-  form button {
+}
+
+form button {
     background-color: #ff6b6b;
-    color: white;
+    color: white; /* Keep button text white or change to black as desired */
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s;
-  }
-  
-  form button:hover {
+}
+
+form button:hover {
     background-color: #ff4a4a;
-  }
-  
-  /* Progress log styling */
-  #progressLog {
+}
+
+/* Progress log styling */
+#progressLog {
     list-style-type: none;
     padding: 0;
-  }
-  
-  #progressLog li {
+}
+
+#progressLog li {
     background: rgba(255, 255, 255, 0.1);
     padding: 0.8rem;
     border-radius: 5px;
     margin-bottom: 0.5rem;
     color: #ffdfba;
-  }
-  
+}

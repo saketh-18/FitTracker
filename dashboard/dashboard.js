@@ -1,4 +1,6 @@
-    
+  import { getAuth } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
+  import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js";
+      
 // Greet the user with their name from local storage
 document.addEventListener("DOMContentLoaded", () => {
     const username = localStorage.getItem("username");
@@ -35,4 +37,37 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Please fill out all fields.");
     }
   }
+  
+
+
+  // Initialize Firebase services
+  const auth = getAuth();
+  const database = getDatabase();
+  
+  window.onload = function() {
+      const user = auth.currentUser;
+      
+      if (user) {
+          const userId = user.uid;
+          const usernameElement = document.getElementById('username');
+  
+          // Fetch user data from the database
+          const dbRef = ref(database);
+          get(child(dbRef, `users/${userId}`)).then((snapshot) => {
+              if (snapshot.exists()) {
+                  const userData = snapshot.val();
+                  console.log('User data fetched:', userData); // Debug statement
+                  usernameElement.textContent = userData.displayName || user.email; // Fallback to email if display name not set
+              } else {
+                  console.error('No user data available');
+                  usernameElement.textContent = "User"; // Fallback message
+              }
+          }).catch((error) => {
+              console.error('Error fetching user data:', error);
+              usernameElement.textContent = "User"; // Fallback message
+          });
+      } else {
+          window.location.href = '../index.html'; // Redirect to login if not authenticated
+      }
+  };
   

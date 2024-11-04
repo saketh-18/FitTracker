@@ -1,13 +1,19 @@
-// Register a new user
-function registerUser() {
-    const email = document.getElementById('registerEmail').value;
-    const password = document.getElementById('registerPassword').value;
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js";
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
 
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+// Example register function
+function registerUser(email, password, displayName) {
+    createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            // Signed in 
+            // Signed in
             const user = userCredential.user;
-            console.log('User registered:', user);
+
+            // Save display name to database
+            const userId = user.uid;
+            set(ref(database, 'users/' + userId), {
+                displayName: displayName,
+                email: email
+            });
         })
         .catch((error) => {
             console.error('Error registering user:', error.message);
@@ -15,22 +21,20 @@ function registerUser() {
 }
 
 // Login existing user
-function loginUser() {
+async function loginUser() {
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
 
-    firebase.auth().signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            console.log('User logged in:', user);
-            // Navigate to dashboard
-            window.location.href = 'dashboard.html';
-        })
-        .catch((error) => {
-            console.error('Error logging in:', error.message);
-        });
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        console.log('User logged in:', userCredential.user);
+        window.location.href = 'dashboard/dashboard.html';
+    } catch (error) {
+        console.error('Error logging in:', error.message);
+        alert(error.message);
+    }
 }
+
 
 function addProgress(userId, steps, calories, exerciseTime, date) {
     const userProgressRef = firebase.database().ref('progress/');

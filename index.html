@@ -6,12 +6,63 @@
   <title>Fitness Tracker</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
+    import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDuJ6lyoDy8n3wbtxENbfLDKhEaMCsi6C0",
+      authDomain: "fittracker-a2da7.firebaseapp.com",
+      databaseURL: "https://fittracker-a2da7-default-rtdb.firebaseio.com",
+      projectId: "fittracker-a2da7",
+      storageBucket: "fittracker-a2da7.firebasestorage.app",
+      messagingSenderId: "490208352743",
+      appId: "1:490208352743:web:d5023ea81156133b0f0542",
+      measurementId: "G-SL6WP9ZK29"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const database = getDatabase(app);
+
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          console.log('User logged in:', userCredential.user);
+          window.location.href = 'dashboard/dashboard.html';
+        })
+        .catch((error) => {
+          console.error('Error logging in:', error.message);
+          alert(error.message);
+        });
+    });
+
+    // Register new user
+    document.getElementById('register-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const email = document.getElementById('registerEmail').value;
+      const password = document.getElementById('registerPassword').value;
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          console.log('User registered:', userCredential.user);
+          // Optionally, redirect to login or dashboard
+          window.location.href = 'dashboard/dashboard.html';
+        })
+        .catch((error) => {
+          console.error('Error registering:', error.message);
+          alert(error.message);
+        });
+    });
+  </script>
 </head>
 <body>
-  <!-- Navbar -->
   <header>
     <nav class="navbar">
       <a href="#" class="logo">FitTracker</a>
@@ -25,17 +76,14 @@
     </nav>
   </header>
 
-  <!-- Main Content with Background Image and Right-Aligned Login Form -->
   <div class="hero">
     <div class="overlay"></div>
     <div class="content">
-      <!-- Left section for image or text -->
       <div class="left-content">
         <h1>Track Your Fitness Journey</h1>
         <p>Stay motivated, reach your goals, and live a healthier life.</p>
       </div>
-      
-      <!-- Right-aligned Login Form -->
+
       <div class="login-form-container">
         <h2>Login</h2>
         <form class="login-form" id="login-form">
@@ -44,47 +92,16 @@
           <button type="submit">Login</button>
         </form>
       </div>
+
+      <div class="register-form-container">
+        <h2>Register</h2>
+        <form class="register-form" id="register-form">
+          <input type="email" id="registerEmail" placeholder="Email" required>
+          <input type="password" id="registerPassword" placeholder="Password" required>
+          <button type="submit">Register</button>
+        </form>
+      </div>
     </div>
   </div>
-
-  <!-- Firebase Initialization and Authentication -->
-  <script>
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyDuJ6lyoDy8n3wbtxENbfLDKhEaMCsi6C0",
-      authDomain: "fittracker-a2da7.firebaseapp.com",
-      databaseURL: "https://fittracker-a2da7-default-rtdb.firebaseio.com",
-      projectId: "fittracker-a2da7",
-      storageBucket: "fittracker-a2da7.firebasestorage.app",
-      messagingSenderId: "490208352743",
-      appId: "1:490208352743:web:d5023ea81156133b0f0542",
-      measurementId: "G-SL6WP9ZK29"
-    };
-
-    // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-
-    // Handle login form submission
-    document.getElementById('login-form').addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent default form submission
-
-      const email = document.getElementById('loginEmail').value;
-      const password = document.getElementById('loginPassword').value;
-
-      // Sign in the user
-      auth.signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          // Signed in 
-          console.log('User logged in:', userCredential.user);
-          window.location.href = 'dashboard/dashboard.html'; // Redirect to dashboard
-        })
-        .catch((error) => {
-          console.error('Error logging in:', error.message);
-          alert(error.message); // Display error message
-        });
-    });
-  </script>
 </body>
 </html>
-
