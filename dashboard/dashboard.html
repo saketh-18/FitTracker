@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">FitTracker</div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Progress</a></li>
+        <li><a href="#">BMI Calculator</a></li>
+      </ul>
+      <a href="index.html" class="btn-logout">Logout</a>
+    </nav>
+  </header>
+
+  <!-- Dashboard Background and Overlay -->
+  <div class="dashboard-content">
+    <div class="dashboard-overlay"></div>
+    <div class="dashboard-main">
+      <!-- Greeting -->
+      <div class="greeting">
+        <h2 id="greeting">Hi, <span id="username"></span>!</h2>
+        <p>Welcome back to your fitness dashboard.</p>
+      </div>
+
+      <!-- Calculator Container with Flexibility -->
+      <div class="calculator-container">
+        <!-- BMI Calculator -->
+        <div class="calculator-box bmi-calculator">
+          <h3>BMI Calculator</h3>
+          <form id="bmiForm">
+            <input type="number" id="weight" placeholder="Weight (kg)" required>
+            <input type="number" id="height" placeholder="Height (cm)" required>
+            <button type="button" onclick="calculateBMI()">Calculate BMI</button>
+          </form>
+          <p id="bmiResult"></p>
+        </div>
+
+        <!-- Progress Tracker -->
+        <div class="calculator-box progress-tracker">
+          <h3>Track Your Progress</h3>
+          <form id="progressForm">
+            <input type="number" id="steps" placeholder="Steps Taken" required>
+            <input type="number" id="calories" placeholder="Calories Burned" required>
+            <input type="number" id="exerciseTime" placeholder="Exercise Time (minutes)" required>
+            <button type="button" onclick="addProgress()">Add Data</button>
+          </form>
+          <h4>Your Progress</h4>
+          <ul id="progressLog"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
